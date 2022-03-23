@@ -1,7 +1,20 @@
 {
+  "baseUrl": "./",
+  "paths": {
+    "@components/*": [
+      "components/*"
+    ],
+    "@styles/*": [
+      "styles/*"
+    ],
+  },  
   "compilerOptions": {
-    "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "target": "es6",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -12,8 +25,15 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+, "src/components/ItemsTodo.js", "src/contexts/itemContext.js", "src/pages/empleados/index.tsx", "src/pages/empleados/[id].js"  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
