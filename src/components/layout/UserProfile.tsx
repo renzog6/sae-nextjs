@@ -1,3 +1,4 @@
+import { useUser } from "@auth0/nextjs-auth0";
 import {
   IconButton,
   Avatar,
@@ -11,10 +12,23 @@ import {
   MenuDivider,
   MenuItem,
   MenuList,
+  Link,
 } from "@chakra-ui/react";
+import NextLink from "next/link";
 import { FiChevronDown, FiBell } from "react-icons/fi";
 
 export default function UserProfile() {
+  const { user, error, isLoading } = useUser();
+  if (!user) {
+    return (
+      <Flex alignItems={"center"}>
+        <NextLink href="/api/auth/login" passHref>
+          <Link>Login</Link>
+        </NextLink>
+      </Flex>
+    );
+  }
+
   return (
     <HStack spacing={{ base: "0", md: "6" }}>
       <IconButton
@@ -31,19 +45,14 @@ export default function UserProfile() {
             _focus={{ boxShadow: "none" }}
           >
             <HStack spacing="4">
-              <Avatar
-                size="md"
-                src={
-                  "https://images.unsplash.com/photo-1619946794135-5bc917a27793?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9"
-                }
-              />
+              <Avatar size="md" src={user.picture} />
               <VStack
                 display={{ base: "none", md: "flex" }}
                 alignItems="flex-start"
                 spacing="1px"
                 ml="2"
               >
-                <Text fontSize="lg">Ademola Jones</Text>
+                <Text fontSize="lg">{user.nickname}</Text>
                 <Text fontSize="md" color="gray.600">
                   Admin
                 </Text>
@@ -58,7 +67,9 @@ export default function UserProfile() {
             <MenuItem>Settings</MenuItem>
             <MenuItem>Billing</MenuItem>
             <MenuDivider />
-            <MenuItem>Sign out</MenuItem>
+            <MenuItem as="a" href="/api/auth/logout">
+              Sign out
+            </MenuItem>
           </MenuList>
         </Menu>
       </Flex>

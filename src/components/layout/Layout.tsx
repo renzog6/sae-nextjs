@@ -2,12 +2,8 @@ import Header from "./Header";
 import Sidebar from "./Sidebar";
 import { Box, Drawer, DrawerContent, useDisclosure } from "@chakra-ui/react";
 
-import { useAuth } from "../../contexts/authContext";
-
 export default function Layout({ children }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-
-  const { user, login, logout } = useAuth();
 
   return (
     <Box minH="100vh">

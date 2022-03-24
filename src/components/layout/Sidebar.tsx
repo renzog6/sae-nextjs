@@ -17,7 +17,7 @@ const LinkItems = [
   { label: "Item", icon: FiTrendingUp, href: "/items" },
   { label: "Todos", icon: FiCompass, href: "/todos" },
   { label: "Empleados", icon: FiStar, href: "/empleados" },
-  { label: "Settings", icon: FiSettings, href: "/" },
+  { label: "Productos", icon: FiSettings, href: "/productos" },
 ];
 
 export default function Sidebar({ onClose, ...rest }) {
