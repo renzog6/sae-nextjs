@@ -24,14 +24,11 @@ import {
 } from "@chakra-ui/react";
 import { EditIcon, SearchIcon } from "@chakra-ui/icons";
 import { supabase } from "../../services/supabase";
-import Image from "next/image";
-//import SinImagen from "../../../public/404.png";
 
-function Empleados() {
+function ProductoList({ items }) {
   let SinImagen = "/404.png";
-  const [items, setItems] = useState([]);
 
-  useEffect(() => {
+  /*   useEffect(() => {
     const fetchTodos = async () => {
       let { data: todos, error } = await supabase
         .from("productos")
@@ -41,7 +38,7 @@ function Empleados() {
       else setItems(todos);
     };
     fetchTodos();
-  }, []);
+  }, []); */
 
   return (
     <>
@@ -79,4 +76,4 @@ function Empleados() {
   );
 }
 
-export default Empleados;
+export default ProductoList;

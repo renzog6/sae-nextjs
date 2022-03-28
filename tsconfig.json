@@ -28,7 +28,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "src/components/ItemsTodo.js", "src/contexts/itemContext.js", "src/pages/empleados/index.tsx", "src/pages/empleados/[id].js", "src/pages/productos/index.jsx", "src/components/productos/ProductoList.jsx"  ],
+, "src/components/ItemsTodo.js", "src/contexts/itemContext.js", "src/pages/empleados/index.tsx", "src/pages/empleados/[id].js", "src/pages/productos/index.tsx", "src/components/productos/ProductoList.js"  ],
   "exclude": [
     "node_modules"
   ]
