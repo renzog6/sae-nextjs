@@ -1,15 +1,14 @@
-import { SearchIcon } from "@chakra-ui/icons";
 import {
-  Flex,
-  InputGroup,
-  Input,
-  InputRightAddon,
+  Flex as Box,
   Spacer,
   Button,
   useDisclosure,
+  Heading,
+  StackDivider,
+  VStack,
 } from "@chakra-ui/react";
 import Head from "next/head";
-import { useState } from "react";
+import Link from "next/link";
 import ProductoAdd from "./ProductoAdd";
 
 const ProductoLayout = ({ children }) => {
@@ -20,28 +19,44 @@ const ProductoLayout = ({ children }) => {
       <Head>
         <title>SAE - Productos</title>
       </Head>
-      <Flex py={2}>
-        <InputGroup width="auto">
-          <Input placeholder="Buscar" width="250px" />
-          <InputRightAddon children={<SearchIcon />} />
-        </InputGroup>
-        <Spacer />
+      <VStack
+        divider={<StackDivider borderColor="gray.200" />}
+        spacing={4}
+        align="stretch"
+        w="100%"
+      >
+        <Box py={2}>
+          <Heading>Productos</Heading>
+          <Spacer />
 
-        <Button onClick={onOpen} colorScheme="teal" size="md">
-          Agregar
-          {isOpen && <ProductoAdd isOpen={isOpen} onClose={onClose} />}
-        </Button>
-        <Spacer />
-        <Button colorScheme="teal" size="md">
-          Button
-        </Button>
-        <Spacer />
-        <Button colorScheme="teal" size="md">
-          Button
-        </Button>
-      </Flex>
+          <Link href={"/productos"}>
+            <Button as={"a"} colorScheme="teal" size="md">
+              Listado
+            </Button>
+          </Link>
+          <Spacer />
 
-      <Flex>{children}</Flex>
+          <Button onClick={onOpen} colorScheme="teal" size="md">
+            Nuevo
+            {isOpen && <ProductoAdd isOpen={isOpen} onClose={onClose} />}
+          </Button>
+          <Spacer />
+
+          <Link href={"/productos/deliver"}>
+            <Button as={"a"} colorScheme="teal" size="md">
+              Entegar
+            </Button>
+          </Link>
+          <Spacer />
+
+          <Link href={"/productos/ver"}>
+            <Button as={"a"} colorScheme="red" size="md">
+              NO Click!!!
+            </Button>
+          </Link>
+        </Box>
+        <Box>{children}</Box>
+      </VStack>
     </>
   );
 };
