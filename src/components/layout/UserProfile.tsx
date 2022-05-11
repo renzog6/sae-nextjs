@@ -1,4 +1,3 @@
-import { useUser } from "@auth0/nextjs-auth0";
 import {
   IconButton,
   Avatar,
@@ -15,18 +14,35 @@ import {
   Link,
 } from "@chakra-ui/react";
 import NextLink from "next/link";
+import { useContext, useEffect, useState } from "react";
 import { FiChevronDown, FiBell } from "react-icons/fi";
 
+import AuthContext from "../../contexts/authContext";
+import { userService } from "../../services/user.services";
+import { ModeToggle } from "./ModeToggle";
+
 export default function UserProfile() {
-  const { user, error, isLoading } = useUser();
-  if (!user) {
+  const auth = useContext(AuthContext);
+  //const [user, setUser] = useState(null);
+
+  /*   useEffect(() => {
+    const subscription = userService.user.subscribe((x) => setUser(x));
+    return () => subscription.unsubscribe();
+  }, []); */
+  console.log("USR::::::: " + auth.user);
+  if (!auth.user) {
     return (
       <Flex alignItems={"center"}>
-        <NextLink href="/api/auth/login" passHref>
+        <NextLink href="/account/login" passHref>
           <Link>Login</Link>
         </NextLink>
       </Flex>
     );
+  }
+
+  function logout() {
+    auth.logout();
+    userService.logout();
   }
 
   return (
@@ -45,14 +61,14 @@ export default function UserProfile() {
             _focus={{ boxShadow: "none" }}
           >
             <HStack spacing="4">
-              <Avatar size="md" src={user.picture} />
+              <Avatar size="md" src="" />
               <VStack
                 display={{ base: "none", md: "flex" }}
                 alignItems="flex-start"
                 spacing="1px"
                 ml="2"
               >
-                <Text fontSize="lg">{user.nickname}</Text>
+                <Text fontSize="lg">{auth.user.email}</Text>
                 <Text fontSize="md" color="gray.600">
                   Admin
                 </Text>
@@ -62,14 +78,12 @@ export default function UserProfile() {
               </Box>
             </HStack>
           </MenuButton>
-          <MenuList fontSize="lg" bg="black" borderColor="gray.200">
+          <MenuList fontSize="lg" borderColor="gray.200">
             <MenuItem>Profile</MenuItem>
             <MenuItem>Settings</MenuItem>
             <MenuItem>Billing</MenuItem>
             <MenuDivider />
-            <MenuItem as="a" href="/api/auth/logout">
-              Sign out
-            </MenuItem>
+            <MenuItem onClick={() => logout()}>Sign out</MenuItem>
           </MenuList>
         </Menu>
       </Flex>

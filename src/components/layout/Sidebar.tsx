@@ -18,6 +18,7 @@ const LinkItems = [
   { label: "Todos", icon: FiCompass, href: "/todos" },
   { label: "Empleados", icon: FiStar, href: "/empleados" },
   { label: "Productos", icon: FiSettings, href: "/productos" },
+  { label: "Usuario", icon: FiSettings, href: "/account/manager" },
 ];
 
 export default function Sidebar({ onClose, ...rest }) {
@@ -33,7 +34,6 @@ export default function Sidebar({ onClose, ...rest }) {
   return (
     <Box
       transition="3s ease"
-      bg="black"
       borderRight="1px"
       borderRightColor="gray.200"
       w={{ base: "full", md: 60 }}

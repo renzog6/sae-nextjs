@@ -39,7 +39,7 @@ export const DeliverOrder = ({ items }) => {
         px={2}
         spacing={5}
         alignItems={"flex-start"}
-        bg={"gray.700"}
+        bg={"gray.100"}
       >
         <Box maxH="40em" w="100%">
           <SimpleGrid columns={2} spacing={5}>

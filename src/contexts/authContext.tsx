@@ -1,47 +1,63 @@
-import { createContext, useContext, ReactNode, useState } from "react";
+import { useRouter } from "next/router";
+import {
+  createContext,
+  useContext,
+  ReactNode,
+  useState,
+  useEffect,
+} from "react";
+import { userService } from "../services/user.services";
 
-type authContextType = {
-  user: boolean;
-  login: () => void;
-  logout: () => void;
-};
-
-const authContextDefaultValues: authContextType = {
-  user: true,
+const AuthContext = createContext({
+  user: null,
   login: () => {},
   logout: () => {},
-};
+  authorized: false,
+});
 
-const AuthContext = createContext<authContextType>(authContextDefaultValues);
+export const AuthProvider = ({ children }) => {
+  const router = useRouter();
+  const [user, setUser] = useState(null);
+  const [authorized, setAuthorized] = useState(false);
 
-export function useAuth() {
-  return useContext(AuthContext);
-}
+  useEffect(() => {
+    // on initial load - run auth check
+    authCheck(router.asPath);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-type Props = {
-  children: ReactNode;
-};
-
-export function AuthProvider({ children }: Props) {
-  const [user, setUser] = useState<boolean>(null);
+  function authCheck(url) {
+    // redirect to login page if accessing a private page and not logged in
+    setUser(userService.userValue);
+    const publicPaths = ["/account/login", "/account/register"];
+    const path = url.split("?")[0];
+    if (!userService.userValue && !publicPaths.includes(path)) {
+      setAuthorized(false);
+      router.push({
+        pathname: "/account/login",
+        query: { returnUrl: router.asPath },
+      });
+    }
+  }
 
   const login = () => {
-    setUser(true);
+    setAuthorized(true);
+    //setUser(JSON.stringify(userService.user));
+    setUser(userService.userValue);
   };
 
   const logout = () => {
-    setUser(false);
+    setAuthorized(false);
   };
 
   const value = {
     user,
     login,
     logout,
+    authorized,
   };
 
-  return (
-    <>
-      <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
-    </>
-  );
-}
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+};
+
+export default AuthContext;

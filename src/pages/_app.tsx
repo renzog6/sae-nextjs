@@ -1,24 +1,24 @@
 import { ChakraProvider } from "@chakra-ui/react";
 import Layout from "../components/layout/Layout";
+
 import { AuthProvider } from "../contexts/authContext";
-import { UserProvider } from "@auth0/nextjs-auth0";
 import { ProductoProvider } from "../contexts/productoContext";
 
-import theme from "../theme/theme";
+import { theme } from "../theme/theme";
 import "../theme/date-picker.css";
 
-function MyApp({ Component, pageProps }) {
+function App({ Component, pageProps }) {
   return (
-    <UserProvider>
-      <ChakraProvider theme={theme}>
+    <ChakraProvider theme={theme}>
+      <AuthProvider>
         <ProductoProvider>
           <Layout>
             <Component {...pageProps} />
           </Layout>
         </ProductoProvider>
-      </ChakraProvider>
-    </UserProvider>
+      </AuthProvider>
+    </ChakraProvider>
   );
 }
 
-export default MyApp;
+export default App;

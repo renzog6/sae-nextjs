@@ -1,5 +1,6 @@
 import { IconButton, Flex, Text } from "@chakra-ui/react";
 import { FiMenu } from "react-icons/fi";
+import { ModeToggle } from "./ModeToggle";
 import UserProfile from "./UserProfile";
 
 export default function Header({ onOpen, ...rest }) {
@@ -12,7 +13,6 @@ export default function Header({ onOpen, ...rest }) {
       height="20"
       zIndex="1"
       alignItems="center"
-      bg="black"
       borderBottomWidth="1px"
       borderBottomColor="gray.200"
       justifyContent={{ base: "space-between", md: "flex-end" }}
@@ -34,7 +34,7 @@ export default function Header({ onOpen, ...rest }) {
       >
         Logo
       </Text>
-
+      <ModeToggle />
       <UserProfile />
     </Flex>
   );
