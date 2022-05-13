@@ -29,8 +29,6 @@ import {
 
 import { AddIcon, SearchIcon } from "@chakra-ui/icons";
 import { useProductoContext } from "../../contexts/productoContext";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 import DeliverAdd from "./DeliverAdd";
 

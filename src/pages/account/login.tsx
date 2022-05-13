@@ -27,6 +27,7 @@ import {
 
 import { FaUserAlt, FaLock } from "react-icons/fa";
 import AuthContext from "../../contexts/authContext";
+import LoginForm from "../../components/layout/LoginForm";
 
 const CFaUserAlt = chakra(FaUserAlt);
 const CFaLock = chakra(FaLock);
@@ -34,6 +35,7 @@ const CFaLock = chakra(FaLock);
 export default Login;
 
 function Login() {
+  /*
   const auth = useContext(AuthContext);
 
   const router = useRouter();
@@ -63,13 +65,15 @@ function Login() {
       })
       .catch(alertService.error);
   }
-
+*/
   return (
+    <h1>Login</h1>
+    //  <LoginForm />
+    /*
     <Flex
       flexDirection="column"
       width="100wh"
       height="100vh"
-      backgroundColor="gray.200"
       justifyContent="center"
       alignItems="center"
     >
@@ -147,5 +151,6 @@ function Login() {
         </Box>
       </Stack>
     </Flex>
+    */
   );
 }

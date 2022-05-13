@@ -1,14 +1,6 @@
 import React from "react";
 import { createContext, useContext, useEffect, useState } from "react";
 import { supabase } from "../services/supabase";
-
-/* type authContextType = {
-  productos?: any;
-};
-const authContextDefaultValues: authContextType = {
-  productos: null,
-}; */
-import "react-toastify/dist/ReactToastify.css";
 import { ProductoRetiro } from "../interfaces/producto_retiro";
 
 const ProductoContext = createContext(null);

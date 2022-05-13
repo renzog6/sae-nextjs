@@ -34,7 +34,7 @@ export default function Header({ onOpen, ...rest }) {
       >
         Logo
       </Text>
-      <ModeToggle />
+
       <UserProfile />
     </Flex>
   );

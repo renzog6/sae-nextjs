@@ -3,8 +3,6 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 
-import { Link } from "../../components/Link";
-
 import { alertService } from "../../services/alert.service";
 import { userService } from "../../services/user.services";
 
@@ -91,9 +89,6 @@ function Register() {
             )}
             Register
           </button>
-          <Link href="/account/login" className="btn btn-link">
-            Cancel
-          </Link>
         </form>
       </div>
     </div>

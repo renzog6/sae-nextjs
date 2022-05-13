@@ -5,15 +5,18 @@ import { useRouter } from "next/router";
 import { Box, Drawer, DrawerContent, useDisclosure } from "@chakra-ui/react";
 
 import AuthContext from "../../contexts/authContext";
+import LoginForm from "./LoginForm";
 
 export default function Layout({ children }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const router = useRouter();
-
   const auth = useContext(AuthContext);
 
   if (!auth.authorized) {
-    return <>{children}</>;
+    return (
+      <>
+        <LoginForm />
+      </>
+    );
   }
 
   return (

@@ -23,12 +23,7 @@ import { ModeToggle } from "./ModeToggle";
 
 export default function UserProfile() {
   const auth = useContext(AuthContext);
-  //const [user, setUser] = useState(null);
 
-  /*   useEffect(() => {
-    const subscription = userService.user.subscribe((x) => setUser(x));
-    return () => subscription.unsubscribe();
-  }, []); */
   console.log("USR::::::: " + auth.user);
   if (!auth.user) {
     return (

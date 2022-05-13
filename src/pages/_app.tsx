@@ -6,12 +6,14 @@ import { ProductoProvider } from "../contexts/productoContext";
 
 import { theme } from "../theme/theme";
 import "../theme/date-picker.css";
+import { ModeToggle } from "../components/layout/ModeToggle";
 
 function App({ Component, pageProps }) {
   return (
     <ChakraProvider theme={theme}>
       <AuthProvider>
         <ProductoProvider>
+          <ModeToggle />
           <Layout>
             <Component {...pageProps} />
           </Layout>
