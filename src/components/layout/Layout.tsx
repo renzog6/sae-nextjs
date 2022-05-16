@@ -20,7 +20,7 @@ export default function Layout({ children }) {
   }
 
   return (
-    <Box minH="100vh">
+    <Box>
       <Sidebar
         onClose={() => onClose}
         display={{ base: "none", md: "block" }}

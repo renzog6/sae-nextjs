@@ -44,6 +44,7 @@ const LoginForm = () => {
           // get return url from query parameters or default to '/'
           //const returnUrl = router.query.returnUrl || "/";
           auth.login();
+          setIsLoading(false);
           router.push("/");
         })
         .catch((e) => {
@@ -87,7 +88,7 @@ const LoginForm = () => {
                 />
               </InputGroup>
             </FormControl>
-            <FormControl mt={6}>
+            <FormControl isRequired mt={6}>
               <FormLabel>Password</FormLabel>
               <InputGroup>
                 <InputLeftElement

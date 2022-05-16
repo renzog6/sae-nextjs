@@ -11,6 +11,7 @@ import {
   Input,
   InputGroup,
   InputRightAddon,
+  InputRightElement,
   Spacer,
   Stack,
   StackDivider,
@@ -25,6 +26,7 @@ import {
 } from "@chakra-ui/react";
 import { EditIcon, SearchIcon } from "@chakra-ui/icons";
 import { supabase } from "../../services/supabase";
+import { FiSearch } from "react-icons/fi";
 
 function ProductoList({ items }) {
   let SinImagen = "/404.png";
@@ -45,23 +47,27 @@ function ProductoList({ items }) {
   return (
     <>
       <VStack
+        h="100vh"
+        w="full"
         divider={<StackDivider borderColor="gray.200" />}
         spacing={4}
         align="stretch"
-        w="100%"
       >
-        <Box w="100%">
-          <InputGroup width="auto">
+        <Flex alignContent="center">
+          <InputGroup mb={4} borderRadius="10px" mr={2}>
             <Input
-              placeholder="Buscar"
+              type="text"
               onChange={(event) => {
                 setSearchTerm(event.target.value);
               }}
+              placeholder="Buscar..."
+              borderRadius="10px"
             />
-            <InputRightAddon children={<SearchIcon />} />
+            <InputRightElement pointerEvents="none" children={<FiSearch />} />
           </InputGroup>
-        </Box>
-        <Box>
+        </Flex>
+
+        <Box h="100vh" w="full">
           <Table variant="striped" colorScheme="teal">
             <Thead>
               <Tr>

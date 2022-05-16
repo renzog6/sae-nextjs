@@ -24,7 +24,6 @@ import { ModeToggle } from "./ModeToggle";
 export default function UserProfile() {
   const auth = useContext(AuthContext);
 
-  console.log("USR::::::: " + auth.user);
   if (!auth.user) {
     return (
       <Flex alignItems={"center"}>
