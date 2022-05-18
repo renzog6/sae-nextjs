@@ -6,8 +6,8 @@ import { ProductoRetiro } from "../interfaces/producto_retiro";
 const ProductoContext = createContext(null);
 
 export const ProductoProvider = ({ children }) => {
-  const [productos, SetProductos] = useState([]);
-  const [deliverList, SetDeliverList] = useState([]);
+  const [productos, setProductos] = useState([]);
+  const [deliverList, setDeliverList] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -28,7 +28,7 @@ export const ProductoProvider = ({ children }) => {
       .order("nombre", { ascending: true });
     if (error) console.log("error", error);
     else {
-      SetProductos(todos);
+      setProductos(todos);
       setLoading(false);
     }
   }
@@ -41,21 +41,21 @@ export const ProductoProvider = ({ children }) => {
         .select("*")
         .order("nombre", { ascending: false });
       if (error) console.log("error", error);
-      else SetProductos(todos);
+      else setProductos(todos);
     };
     fetchTodos();
   }, []);
 
     async function fetchAll() {
     const { data, error } = await supabase.from("productos").select();
-    SetProductos(data);
+    setProductos(data);
     setLoading(false);
   }
  */
   function addToDeliverList(data: any) {
     try {
       if (!deliverList.includes(data)) {
-        SetDeliverList(deliverList.concat(data));
+        setDeliverList(deliverList.concat(data));
       } else {
         console.log("ERROR::::");
       }
@@ -114,12 +114,17 @@ export const ProductoProvider = ({ children }) => {
     else console.log("TODO OK");
   };
 
+  const resetDeliver = () => {
+    setDeliverList([]);
+  };
+
   const value = {
     productos,
     deliverList,
-    SetDeliverList,
+    setDeliverList,
     addToDeliverList,
     updateDeliver,
+    resetDeliver,
   };
 
   return (

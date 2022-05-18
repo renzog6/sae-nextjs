@@ -5,6 +5,7 @@ import {
   Badge,
   Box,
   Button,
+  ButtonGroup,
   Container,
   Flex,
   IconButton,
@@ -27,6 +28,7 @@ import {
 import { EditIcon, SearchIcon } from "@chakra-ui/icons";
 import { supabase } from "../../services/supabase";
 import { FiSearch } from "react-icons/fi";
+import { FaArrowDown, FaArrowUp } from "react-icons/fa";
 
 function ProductoList({ items }) {
   let SinImagen = "/404.png";
@@ -100,11 +102,23 @@ function ProductoList({ items }) {
                     <Td>{item.tipo}</Td>
                     <Td>{item.stock}</Td>
                     <Td>
-                      <IconButton
-                        colorScheme="blue"
-                        aria-label="Edit"
-                        icon={<EditIcon />}
-                      />
+                      <ButtonGroup variant="outline" spacing="6">
+                        <IconButton
+                          aria-label="inElement"
+                          colorScheme="green"
+                          icon={<FaArrowDown />}
+                        />
+                        <IconButton
+                          colorScheme="blue"
+                          aria-label="Edit"
+                          icon={<EditIcon />}
+                        />
+                        <IconButton
+                          aria-label="outElement"
+                          colorScheme="red"
+                          icon={<FaArrowUp />}
+                        />
+                      </ButtonGroup>
                     </Td>
                   </Tr>
                 ))}

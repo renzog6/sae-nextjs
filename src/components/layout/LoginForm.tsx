@@ -27,9 +27,11 @@ const LoginForm = () => {
   const auth = useContext(AuthContext);
   const router = useRouter();
   const [username, setUsername] = useState("");
+
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const handleShowClick = () => setShowPassword(!showPassword);
+
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 

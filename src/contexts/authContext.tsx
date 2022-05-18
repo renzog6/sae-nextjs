@@ -1,11 +1,5 @@
 import { useRouter } from "next/router";
-import {
-  createContext,
-  useContext,
-  ReactNode,
-  useState,
-  useEffect,
-} from "react";
+import { createContext, useState, useEffect } from "react";
 import { userService } from "../services/user.services";
 
 const AuthContext = createContext({
@@ -29,7 +23,7 @@ export const AuthProvider = ({ children }) => {
   function authCheck(url) {
     // redirect to login page if accessing a private page and not logged in
     setUser(userService.userValue);
-    const publicPaths = ["/account/login", "/account/register"];
+    const publicPaths = ["/account/login"];
     const path = url.split("?")[0];
     if (!userService.userValue && !publicPaths.includes(path)) {
       setAuthorized(false);
