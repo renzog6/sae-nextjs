@@ -4,7 +4,7 @@ import Router from "next/router";
 
 import { fetchWrapper } from "./fetch-wrapper";
 
-//const { publicRuntimeConfig } = getConfig();
+const { publicRuntimeConfig } = getConfig();
 //const baseUrl = `${publicRuntimeConfig.apiUrl}/users`;
 const baseUrl = "http://localhost:8080/api/auth/signin";
 const userSubject = new BehaviorSubject(
@@ -27,7 +27,7 @@ export const userService = {
 
 function login(username, password) {
   //console.log("dx::: " + username, password);
-  //console.log("url:: " + baseUrl);
+  //console.log("XXXXXXXX:: " + publicRuntimeConfig.apiUrl);
 
   return fetchWrapper
     .post(`${baseUrl}`, { username, password })
